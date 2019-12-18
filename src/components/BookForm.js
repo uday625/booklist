@@ -3,19 +3,20 @@ import { BookContext } from '../context/BookContext';
 
 const BookForm = () => {
 
-    const {addBook} =useContext(BookContext)
+    const {dispatch} =useContext(BookContext)
     
     const [title,setTitle] = useState('')
     const [author,setAuthor] =useState('')
 
-
     const submitHandler=(e)=>{
         e.preventDefault()
-        addBook(title,author)
+
+        dispatch({type:'ADD_BOOK',book:{
+            title,author
+        }})
         setAuthor('')
         setTitle('')
     }
-
 
     return (
         <form onSubmit={submitHandler}>
